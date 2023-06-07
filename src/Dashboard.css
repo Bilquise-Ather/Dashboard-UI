@@ -1,0 +1,21 @@
+.gradient{
+background: linear-gradient(135deg, #D5B8D5, #371738);
+}
+.gradient2 {
+    background: linear-gradient(135deg, #B9D9EB, #1B4E80);
+}
+.gradient3 {
+      background: linear-gradient(135deg, #FDD4D7, #B44E68);
+}
+.dashStyle {
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #40E0D0;
+}
+
+.dashStyle span {
+    font-weight: bold;
+}
+
