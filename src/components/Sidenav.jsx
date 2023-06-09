@@ -15,8 +15,11 @@ import ListItemText from '@mui/material/ListItemText';
 import HomeIcon from '@mui/icons-material/Home';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import SettingsIcon from '@mui/icons-material/Settings';
+import PersonIcon from '@mui/icons-material/Person';
 import { useNavigate } from 'react-router-dom';
 import { useAppStore } from '../appStore';
+import { Link } from 'react-router-dom';
+import { getColorMode } from '../themes/Theme';
 
 const drawerWidth = 240;
 
@@ -69,6 +72,11 @@ const Drawer = styled(MuiDrawer, {
 
 export default function Sidenav() {
   const theme = useTheme();
+  // Call getColorMode to get the desired theme
+  // const modeTheme = getColorMode('dark'); // Pass 'dark' or 'light' depending on the desired mode
+
+  // Access the theme using the retrieved theme object
+  // const textColor = modeTheme.palette.text.default;
   // const [open, setOpen] = React.useState(true);
   const navigate = useNavigate();
   const open = useAppStore((state) => state.dopen);
@@ -92,9 +100,9 @@ export default function Sidenav() {
           <ListItem
             disablePadding
             sx={{ display: 'block' }}
-            onClick={() => {
-              navigate('/');
-            }}
+            button
+            component={Link}
+            to="/"
           >
             <ListItemButton
               sx={{
@@ -119,9 +127,9 @@ export default function Sidenav() {
           <ListItem
             disablePadding
             sx={{ display: 'block' }}
-            onClick={() => {
-              navigate('/about');
-            }}
+            button
+            component={Link}
+            to="/about"
           >
             <ListItemButton
               sx={{
@@ -146,9 +154,9 @@ export default function Sidenav() {
           <ListItem
             disablePadding
             sx={{ display: 'block' }}
-            onClick={() => {
-              navigate('/settings');
-            }}
+            button
+            component={Link}
+            to="/settings"
           >
             <ListItemButton
               sx={{
@@ -167,6 +175,62 @@ export default function Sidenav() {
                 <SettingsIcon />
               </ListItemIcon>
               <ListItemText primary="Settings" sx={{ opacity: open ? 1 : 0 }} />
+            </ListItemButton>
+          </ListItem>
+
+          <ListItem
+            disablePadding
+            sx={{ display: 'block' }}
+            button
+            component={Link}
+            to="/user-reg"
+          >
+            <ListItemButton
+              sx={{
+                minHeight: 48,
+                justifyContent: open ? 'initial' : 'center',
+                px: 2.5,
+              }}
+            >
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  mr: open ? 3 : 'auto',
+                  justifyContent: 'center',
+                }}
+              >
+                <PersonIcon />
+              </ListItemIcon>
+              <ListItemText
+                primary="UserRegister"
+                sx={{ opacity: open ? 1 : 0 }}
+              />
+            </ListItemButton>
+          </ListItem>
+          <ListItem
+            disablePadding
+            sx={{ display: 'block' }}
+            button
+            component={Link}
+            to="/user"
+          >
+            <ListItemButton
+              sx={{
+                minHeight: 48,
+                justifyContent: open ? 'initial' : 'center',
+                px: 2.5,
+              }}
+            >
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  mr: open ? 3 : 'auto',
+                  justifyContent: 'center',
+                }}
+              >
+                <PersonIcon />
+              </ListItemIcon>
+              <ListItemText primary="User" sx={{ opacity: open ? 1 : 0 }} />
             </ListItemButton>
           </ListItem>
         </List>

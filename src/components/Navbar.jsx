@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -16,6 +16,9 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import MuiAppBar from '@mui/material/AppBar';
 import { useAppStore } from '../appStore';
+import { useThemeContext } from '../context/ThemeContext';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
 
 const AppBar = styled(
   MuiAppBar,
@@ -73,6 +76,9 @@ export default function Navbar() {
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
+  const { mode, setMode } = useThemeContext();
+  console.log(mode, 'mode');
+
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -88,6 +94,10 @@ export default function Navbar() {
 
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
+  };
+
+  const toggleTheme = () => {
+    setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
   };
 
   const menuId = 'primary-search-account-menu';
@@ -165,11 +175,14 @@ export default function Navbar() {
   );
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, backgroundColor: 'primary.main' }}>
       <AppBar
         position="fixed"
         elevation={0}
-        sx={{ backgroundColor: 'white', color: 'grey' }}
+        sx={{
+          backgroundColor: 'background.default',
+          color: mode === 'light' ? 'grey' : 'white',
+        }}
       >
         <Toolbar>
           <IconButton
@@ -247,6 +260,15 @@ export default function Navbar() {
               <MoreIcon />
             </IconButton>
           </Box>
+          <IconButton
+            size="large"
+            aria-label="toggle theme"
+            aria-haspopup="true"
+            onClick={toggleTheme}
+            color="inherit"
+          >
+            {mode === 'light' ? <Brightness4Icon /> : <Brightness7Icon />}
+          </IconButton>
         </Toolbar>
       </AppBar>
       {renderMobileMenu}

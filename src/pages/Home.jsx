@@ -12,6 +12,7 @@ import ShowChartIcon from '@mui/icons-material/ShowChart';
 import StorageIcon from '@mui/icons-material/Storage';
 import TourIcon from '@mui/icons-material/Tour';
 import DashboardIcon from '@mui/icons-material/Dashboard';
+import User from './User';
 
 const Home = () => {
   return (
@@ -129,16 +130,9 @@ const Home = () => {
               </Stack>
             </Grid>
           </Grid>
-          <Box height={20} />
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <Card sx={{ height: 60 + 'vh' }}>
-                <CardContent></CardContent>
-              </Card>
-            </Grid>
-          </Grid>
         </Box>
       </Box>
+      <User />
     </>
   );
 };
